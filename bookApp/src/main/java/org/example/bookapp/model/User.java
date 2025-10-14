@@ -20,18 +20,36 @@ public class User {
     private Long id;
 
     private String firstName;
-    private String refreshToken;
     private String lastName;
     private String email;
+    private String password;
     private String gender;
     private String address;
     private String phoneNumber;
 
     private BigDecimal balance;
 
-    private String password;
+    private String refreshToken;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="role_id")
     private Role role;
+
+    public User(String firstName,
+                String lastName,
+                String email,
+                String password,
+                String gender,
+                String address,
+                String phoneNumber,
+                Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+    }
 }
