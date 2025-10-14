@@ -23,6 +23,7 @@ private String firstName;
 public class UserMapper {
 
     private final RoleService roleService;
+    private final RoleMapper roleMapper;
 
     public UserDTO toDTO(UserRegistrationRequest userRegistrationRequest) {
         return new UserDTO(
@@ -60,7 +61,7 @@ public class UserMapper {
                 user.getGender(),
                 user.getAddress(),
                 user.getPhoneNumber(),
-                user.getRole()
+                this.roleMapper.toDTO(user.getRole())
         );
     }
 

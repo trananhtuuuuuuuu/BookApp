@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.bookapp.dto.RoleDTO;
 import org.example.bookapp.model.Role;
 
 @Getter
@@ -17,5 +18,5 @@ public class UserRegistrationResponse {
     private String gender;
     private String address;
     private String phoneNumber;
-    private Role role;
+    private RoleDTO role; // response Role DTO instead Entity like this
 }
