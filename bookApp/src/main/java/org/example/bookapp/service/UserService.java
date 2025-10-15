@@ -40,4 +40,9 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return this.userRepository.save(user);
     }
+
+    public User getUserById(Long id) {
+        return this.userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
 }

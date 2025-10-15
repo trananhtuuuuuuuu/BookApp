@@ -2,6 +2,7 @@ package org.example.bookapp.controller;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.example.bookapp.dto.RoleDTO;
 import org.example.bookapp.mapper.UserMapper;
 import org.example.bookapp.model.User;
 import org.example.bookapp.request.user.UserRegistrationRequest;
@@ -11,10 +12,9 @@ import org.example.bookapp.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -37,6 +37,17 @@ public class UserController {
         serverResponse.setData(userRegistrationResponse);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(serverResponse);
+    }
+
+    @GetMapping("/roles")
+    public ResponseEntity<Object> getRoleUser(@RequestParam Long id) {
+        ServerResponse serverResponse = new ServerResponse();
+        serverResponse.setStatusCode(HttpStatus.OK.value());
+        serverResponse.setMessage("Successfully");
+        User user = this.userService.getUserById(id);
+        serverResponse.setData(this.userMapper.toRegistrationResponse(user));
+        return ResponseEntity.status(HttpStatus.OK).body(serverResponse);
+
     }
 
 }
